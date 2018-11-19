@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3 form-box">
+        <div class="form-top">
+            <div class="form-top-left">
+                <h3>Sign Up</h3>
+                <p>Enter your details:</p>
+            </div>
+            <div class="form-top-right">
+                <i class="fa fa-pencil"></i>
+            </div>
+        </div>
+        <div class="form-bottom">
+            <form role="form"  method="post" class="login-form" ng-submit="doRegister()">
+                <div class="form-group">
+                    <label class="sr-only">Full Name</label>
+                    <input type="text" ng-model="name" placeholder="Full Name..." class="form-control" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">username</label>
+                    <input type="text" ng-model="username" placeholder="Username..." class="form-control" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Email</label>
+                    <input type="email" ng-model="email" placeholder="Email..." class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Password</label>
+                    <input type="password" ng-model="password" placeholder="Enter Password..." class="form-control" required id="password">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Password</label>
+                    <input type="password" ng-model="rpassword" placeholder="Re-enter Password..." class="form-control" required id="rpassword">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Contact number</label>
+                    <input type="tel" ng-model="contact" placeholder="Contact Number..." class="form-control" id="contact" required>
+                </div>
+                <div class="form-group">   
+                    <select class="form-control" id="sel1" ng-model="degree" required>
+                        <option value="" disabled selected>Branch...</option>
+                        <option ng-repeat="x in degrees" value="{{x.iddegrees}}">{{x.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">DOB</label>
+                    <input type="date" ng-model="dob" placeholder="Date of Birth..." class="form-control" id="dob" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="sr-only">Gender</label>
+                    <div class="col-xs-4">Gender</div>
+                    <div class="col-xs-4"><input type="radio" ng-model="gender" id="gender" value="male">male</div>
+                    <div class="col-xs-4"><input type="radio" ng-model="gender" id="gender" value="female">female</div>
+                    <br>
+                </div>
+
+                <button type="submit" class="btn" value="student" name="person" id="person" onclick="this.blur();">Sign up as Student!</button>
+            </form>
+            <p><center><a href="#lregister" ng-click="login=true">Go back to login page</a></center></p>
+
+            <div class="sk-folding-cube" ng-show="loading">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+            <div class="alert alert-danger" ng-show="error">
+                
+                <a href="#" class="close"  ng-click="login=true;error=false;">&times;</a>
+
+                <strong>Warning!</strong> {{errormsg}}</div>
+            <div class="alert alert-success alert-dismissable" ng-show="regstatus">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="login=true">&times;</a>
+
+                <strong>Registeration complete!</strong> Please verify your email for logging in</div>
+
+        </div>
+    </div>
+</div>

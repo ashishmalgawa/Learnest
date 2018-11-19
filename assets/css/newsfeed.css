@@ -1,0 +1,14 @@
+.shadow{
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+}
+.item{
+  float: left;
+  width: 100%;
+  margin: 15px 0;
+  background: white;
+}
+
+.fa{
+    font-size:90px;
+}
+

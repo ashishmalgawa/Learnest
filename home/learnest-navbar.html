@@ -1,0 +1,44 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<div id="flipkart-navbar">
+    <div class="container">
+        <div class="row row1">
+            <ul class="largenav pull-right" ng-hide="mobile">
+                <li class="upper-links"><a class="links" href="#/" ng-click="back()"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                <li class="upper-links"><a class="links" href="#profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a></li>
+                 <li  ng-mouseover="notificationsignal(false)" ng-click="notificationsignal(false)" class="upper-links dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a class="links" href="" ><span class="glyphicon glyphicon-bell" ng-attr-style="{{notify}}" aria-hidden="true"></span> Notifications</a>
+       <div class="dropdown-menu list-left" style="width: 300px !important;" aria-labelledby="dropdownMenuButton">
+
+           <small-notifications></small-notifications>
+        </div>
+                </li>
+                 
+                <li class="upper-links dropdown mydropdown"><a class="links" href=""><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+</a>
+                    <ul class="dropdown-menu list-left">
+                        <li class="profile-li"><a class="profile-links" href="#editProfile"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Profile</a></li>
+                        <li class="profile-li"><a class="profile-links" href="#subscribed"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Your Subscribed</a></li>
+                        <li class="profile-li"><a class="profile-links" href="" ng-click="logout()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
+                </li>
+            </ul>
+        </div>
+        <div class="row row2">
+            <div class="col-sm-2">
+                <h2 style="margin:0px;margin-left:0px;"><span class="smallnav menu" ng-attr-style="{{notify}}" ng-show="mobile" onclick="openNav()">☰ </span></h2>
+                <h1 style="margin:0px;" class="learnest-logo my-logo"><a href="#/" ng-click="back()" class="links"><span class="largenav" ng-hide="mobile">Learnest</span></a></h1>
+            </div>
+            <search-navbar></search-navbar>
+
+        </div>
+    </div>
+</div>
+<div id="mySidenav" class="sidenav" ng-init="navpage='Home'">
+    <div class="container" style="background:url('assets/img/backgrounds/chalkboard-backgrounds/chalkboard-black.jpg'); padding-top: 10px;">
+        <span class="sidenav-heading">{{navpage}} </span>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    </div>
+    <a href="#/" ng-click="navpage='Home'" onclick="closeNav()"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+    <a href="#profile" ng-click="navpage='Profile'" onclick="closeNav()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+    <a href="#notifications"  ng-click="notificationsignal(false)" onclick="closeNav()"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a>
+    <a href="logout.php"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+</div>
+</div>

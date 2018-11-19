@@ -1,0 +1,111 @@
+<!--
+<div class="alert alert-info alert-dismissable fade in" ng-show="uploadres.status">
+    <a href="#profile" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{uploadres.status|uppercase}}!</strong> {{uploadres.message}}.
+</div>
+-->
+<!--Panel that contains File Upload -->
+<div class="panel panel-info" ng-init="uploaderror=false">
+    <div class="panel-heading black-label"><h3 class="panel-title learnest-logo">Upload a File</h3></div>
+    <div class="panel-body">
+
+        <form role="form"  method="post" id="uploadForm" class="upload-form" ng-submit="uploadFile();">
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="title" id="dname" style="height: 30px;" placeholder="Title.." required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" ng-model="description" id="description" rows="2" placeholder="File Description (Max 160 words...)"></textarea>
+            </div>
+            <div class="row form-group form-inline">
+                <div class="col-sm-4">
+                    <select class="form-control mb-1 mr-sm-1 mb-sm-1" id="class_select" style="height: 33px;" ng-model="cls" name="class_select" required ng-change="fetchSubject()">
+                        <option value="" disabled selected>Class..</option>
+                        <option ng-repeat="c in classes" value="{{c.classid}}" >{{c.className}}</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4">
+                    <select class="form-control mb-1 mr-sm-1 mb-sm-1" id="subject_select" style="height: 33px;" ng-model="subject" ng-show="cls"  required>
+                        <option value="" disabled selected>Subject..</option>
+                        <option ng-repeat="s in sub" value="{{s.subjectName}}">{{s.subjectName}}</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4">
+                    <select class="form-control mb-1 mb-sm-1" id="fileType_select" style="height: 33px;" ng-model="fileType" required>
+                        <option value="" disabled selected>File Type</option>
+                        <option value="video">Video</option>
+                        <option value="book">Book</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Upload File..." readonly>
+                    <label class="input-group-btn">
+                        <span class="btn btn-info ">
+                            Browse <input type="file" file-input="files" class="file" style="display:none;">
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                    <button type="submit" class="btn btn-success btn-block" value="Upload" name="fileUpload" id="fileUpload">Upload</button>
+        </div>
+            <div class="col-xs-4"></div>
+                
+            </div>
+        </form>
+        <center>
+        <div class="alert alert-danger" ng-show="uploaderror"><span class="glyphicon glyphicon-exclamation-sign"></span> {{uploaderrormsg}}</div>
+        <div class="alert alert-success" ng-show="uploadres.status">
+            <a ng-click="uploadres.status=false"><small style="position:absolute;right:34px;top:316px;"><span class="glyphicon glyphicon-remove"></span></small></a>
+            
+            Your file is successfully uploaded!</div>    
+        <div id="search loading" ng-show="uploadloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+            <center><small>Please wait while your file is being uploaded</small></center>
+        </div>
+        </center>
+    </div>
+</div>
+
+<script>
+    $(function() {
+
+        // We can attach the `fileselect` event to all file inputs on the page
+        $(document).on('change', ':file', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+
+        // We can watch for our custom `fileselect` event like this
+        $(document).ready( function() {
+            $(':file').on('fileselect', function(event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if( input.length ) {
+                    input.val(log);
+                } else {
+                    if( log ) alert(log);
+                }
+
+            });
+        });
+
+    });
+</script>
+
+<!--<input accept="video/x-flv,video/mp4,application/x-mpegURL.video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv">-->
